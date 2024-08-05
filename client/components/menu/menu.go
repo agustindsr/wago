@@ -27,7 +27,10 @@ func Render() dom.HTMLNode {
 	chatLink := dom.Anchor("Chat").Tailwind(linkStyles...).
 		OnClick(navigateTo(chat.New().Render()))
 
-	sidebar.Child(homeLink, counterLink, todoLink, userManagementLink, chatLink)
+	betsLink := dom.Anchor("Bets").Tailwind(linkStyles...).
+		OnClick(navigateTo(home.Render()))
+
+	sidebar.Child(homeLink, counterLink, todoLink, userManagementLink, chatLink, betsLink)
 
 	return sidebar
 }

@@ -82,12 +82,16 @@ func H2(t any) HTMLNode {
 	return Element(h2Element).SetInnerHTML(t)
 }
 
-func H3() HTMLNode {
-	return Element(h3Element)
+func H3(t any) HTMLNode {
+	return Element(h3Element).SetInnerHTML(t)
 }
 
-func H4() HTMLNode {
-	return Element(h4Element)
+func IMG(src string) HTMLNode {
+	return Element("img").Set("src", src)
+}
+
+func H4(t any) HTMLNode {
+	return Element(h4Element).SetInnerHTML(t)
 }
 
 func H5() HTMLNode {
