@@ -38,6 +38,7 @@ func FetchData[T any](urlStr string, queryParams map[string]string, headers map[
 		req.Header.Set(key, value)
 	}
 
+	req.Header.Set("mode", "cors")
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return response, fmt.Errorf("error fetching data: %v", err)
