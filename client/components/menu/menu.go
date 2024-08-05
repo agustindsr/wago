@@ -3,6 +3,7 @@ package menu
 import (
 	"wasm/client/components/chat"
 	"wasm/client/components/counter"
+	"wasm/client/components/draftea/bets"
 	"wasm/client/components/home"
 	"wasm/client/components/todolist"
 	"wasm/client/components/usermanagement"
@@ -28,7 +29,7 @@ func Render() dom.HTMLNode {
 		OnClick(navigateTo(chat.New().Render()))
 
 	betsLink := dom.Anchor("Bets").Tailwind(linkStyles...).
-		OnClick(navigateTo(home.Render()))
+		OnClick(navigateTo(bets.New().Render()))
 
 	sidebar.Child(homeLink, counterLink, todoLink, userManagementLink, chatLink, betsLink)
 
