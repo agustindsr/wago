@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasm API Call Example</title>
+</head>
+<body>
+<h1>WebAssembly API Call Example</h1>
+<button id='fetch-button' onclick="getPhotosAndRender()">Fetch Data</button>
+<table id="photos-table" border="1">
+</table>
+<script src="../../wasm_exec.js"></script>
+<script>
+    const go = new Go();
+    WebAssembly.instantiateStreaming(fetch("play.wasm"), go.importObject).then((result) => {
+        go.run(result.instance);
+    });
+</script>
+</body>
+</html>
