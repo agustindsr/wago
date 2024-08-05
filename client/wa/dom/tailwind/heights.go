@@ -1,0 +1,32 @@
+package tlw
+
+const (
+	HFull   TailwindClass = "h-full"
+	H1      TailwindClass = "h-1"
+	H2      TailwindClass = "h-2"
+	H3      TailwindClass = "h-3"
+	H4      TailwindClass = "h-4"
+	H5      TailwindClass = "h-5"
+	H6      TailwindClass = "h-6"
+	H8      TailwindClass = "h-8"
+	H10     TailwindClass = "h-10"
+	H12     TailwindClass = "h-12"
+	H16     TailwindClass = "h-16"
+	H20     TailwindClass = "h-20"
+	H24     TailwindClass = "h-24"
+	H32     TailwindClass = "h-32"
+	H40     TailwindClass = "h-40"
+	H48     TailwindClass = "h-48"
+	H56     TailwindClass = "h-56"
+	H64     TailwindClass = "h-64"
+	HAuto   TailwindClass = "h-auto"
+	HScreen TailwindClass = "h-screen"
+
+	Minh0    TailwindClass = "min-h-0"
+	MinhFull TailwindClass = "min-h-full"
+	Minh1_2  TailwindClass = "min-h-1/2"
+	Minh1_3  TailwindClass = "min-h-1/3"
+	Minh2_3  TailwindClass = "min-h-2/3"
+	Minh1_4  TailwindClass = "min-h-1/4"
+	Minh3_4  TailwindClass = "min-h-3/4"
+)
