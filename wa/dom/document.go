@@ -6,7 +6,7 @@ func Document() HTMLNode {
 }
 
 func Body() HTMLNode {
-	return HTMLNode{value: Document().value.Get("body")}
+	return HTMLNode{value: Document().Get("body").value}
 }
 
 // ElementByID obtiene un elemento del DOM por su ID

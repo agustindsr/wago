@@ -21,6 +21,10 @@ const (
 	pElement      = "p"
 	brElement     = "br"
 	strongElement = "strong"
+	ulElement     = "ul"
+	liElement     = "li"
+	inputElement  = "input"
+	buttonElement = "button"
 )
 
 type (
@@ -98,6 +102,22 @@ type (
 	AnchorElement struct {
 		HTMLNode
 	}
+
+	InputElement struct {
+		HTMLNode
+	}
+
+	ButtonElement struct {
+		HTMLNode
+	}
+
+	LIElement struct {
+		HTMLNode
+	}
+
+	ULElement struct {
+		HTMLNode
+	}
 )
 
 func Anchor() AnchorElement {
@@ -173,6 +193,22 @@ func Head() HeadElement {
 	return HeadElement{Element("head")}
 }
 
+func Input() InputElement {
+	return InputElement{Element(inputElement)}
+}
+
+func Button() ButtonElement {
+	return ButtonElement{Element(buttonElement)}
+}
+
+func UL() ULElement {
+	return ULElement{Element(ulElement)}
+}
+
+func LI() LIElement {
+	return LIElement{Element(liElement)}
+}
+
 // SetInnerHTML establece el contenido HTML interno del elemento
 func (gv HTMLNode) SetInnerHTML(html any) HTMLNode {
 	gv.value.Set("innerHTML", html)
@@ -195,6 +231,19 @@ func (gv HTMLNode) Child(child HTMLNode) HTMLNode {
 func (gv HTMLNode) ClearChildren() HTMLNode {
 	gv.SetInnerHTML("")
 	return gv
+}
+
+func (gv HTMLNode) Get(name string) HTMLNode {
+	return HTMLNode{value: gv.value.Get(name)}
+}
+
+func (gv HTMLNode) Set(name string, value any) HTMLNode {
+	gv.value.Set(name, value)
+	return gv
+}
+
+func (gv HTMLNode) String() string {
+	return gv.value.String()
 }
 
 // Call invoca un método en el elemento
