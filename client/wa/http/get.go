@@ -38,8 +38,7 @@ func FetchData[T any](urlStr string, queryParams map[string]string, headers map[
 		req.Header.Set(key, value)
 	}
 
-	req.Header.Set("Access-Control-Request-Method", "GET")
-	req.Header.Set("Origin", "https://agustindsr.github.io")
+	req.Header.Set("Origin", "http://localhost:63342")
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {

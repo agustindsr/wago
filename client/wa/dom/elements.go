@@ -86,7 +86,7 @@ func H3(t any) HTMLNode {
 	return Element(h3Element).SetInnerHTML(t)
 }
 
-func IMG(src string) HTMLNode {
+func Img(src string) HTMLNode {
 	return Element("img").Set("src", src)
 }
 
@@ -173,9 +173,17 @@ func (node HTMLNode) GetValue() HTMLNode {
 	return node.Get("value")
 }
 
+func (node HTMLNode) Float() float64 {
+	return node.value.Float()
+}
+
 func (node HTMLNode) Set(name string, value any) HTMLNode {
 	node.value.Set(name, value)
 	return node
+}
+
+func (node HTMLNode) SetType(value string) HTMLNode {
+	return node.Set("type", value)
 }
 
 func (node HTMLNode) SetValue(value any) HTMLNode {
@@ -208,4 +216,8 @@ func (node HTMLNode) AddRow(data []string) {
 		row.Child(cell)
 	}
 	node.Child(row)
+}
+
+func (node HTMLNode) ReplaceWith(newNode HTMLNode) {
+	node.value.Call("replaceWith", newNode.Value())
 }

@@ -34,6 +34,10 @@ func (node HTMLNode) OnClick(fn Func) HTMLNode {
 	return node.AddEventListener(eventClick, fn)
 }
 
+func (node HTMLNode) OnChange(fn Func) HTMLNode {
+	return node.AddEventListener("change", fn)
+}
+
 func (node HTMLNode) OnHover(fn Func) HTMLNode {
 	return node.OnMouseEnter(fn).OnMouseLeave(fn)
 }

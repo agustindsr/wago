@@ -76,4 +76,8 @@ const (
 	TextPink700     TailwindClass = "text-pink-700"
 	TextPink800     TailwindClass = "text-pink-800"
 	TextPink900     TailwindClass = "text-pink-900"
+
+	TextCenter TailwindClass = "text-center"
+	TextLeft   TailwindClass = "text-left"
+	TextRight  TailwindClass = "text-right"
 )

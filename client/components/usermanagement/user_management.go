@@ -78,6 +78,14 @@ func Render() dom.HTMLNode {
 func (c *Component) AddUser(_ dom.Event) {
 	name := c.NameInput.GetValue().String()
 	email := c.EmailInput.GetValue().String()
+	if name == "" {
+		c.NameInput.ToggleClass("border-red-500")
+	}
+
+	if email == "" {
+		c.EmailInput.ToggleClass("border-red-500")
+	}
+
 	if name == "" || email == "" {
 		return
 	}

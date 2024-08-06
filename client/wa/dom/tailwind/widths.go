@@ -60,4 +60,6 @@ const (
 	MinW2_3  TailwindClass = "min-w-2/3"
 	MinW1_4  TailwindClass = "min-w-1/4"
 	MinW3_4  TailwindClass = "min-w-3/4"
+
+	MaxW1_4 TailwindClass = "max-w-1/4"
 )

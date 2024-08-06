@@ -105,7 +105,7 @@ func GetBets() Response {
 			"Authorization": fmt.Sprintf("Bearer %s", token),
 		})
 	if err != nil {
-		dom.Alert("Error fetching data:")
+		dom.ConsoleLog("Error fetching data:")
 	}
 
 	return response

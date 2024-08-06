@@ -3,7 +3,6 @@
 package main
 
 import (
-	"wasm/client/components/footer"
 	"wasm/client/components/home"
 	"wasm/client/components/menu"
 	"wasm/client/wa/dom"
@@ -17,7 +16,6 @@ func main() {
 			dom.Div().
 				SetID("content").
 				Child(home.Render()).Tailwind(tlw.Flex1, tlw.P4, tlw.Mb8),
-			footer.Render(),
 		)
 
 	select {}
