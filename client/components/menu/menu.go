@@ -3,7 +3,7 @@ package menu
 import (
 	"wasm/client/components/chat"
 	"wasm/client/components/counter"
-	"wasm/client/components/draftea/bets"
+	"wasm/client/components/draftea/osb"
 	"wasm/client/components/home"
 	"wasm/client/components/todolist"
 	"wasm/client/components/usermanagement"
@@ -23,15 +23,19 @@ func Render() dom.HTMLNode {
 		OnClick(navigateTo(todolist.Render()))
 	counterLink := dom.Anchor("Counter").Tailwind(linkStyles...).
 		OnClick(navigateTo(counter.NewCounter().Render()))
+
+	counterSignalTC39Link := dom.Anchor("Counter Signal").Tailwind(linkStyles...).
+		OnClick(navigateTo(counter.NewCounterSignal().Render()))
+
 	userManagementLink := dom.Anchor("User Management").Tailwind(linkStyles...).
 		OnClick(navigateTo(usermanagement.Render()))
 	chatLink := dom.Anchor("Chat").Tailwind(linkStyles...).
 		OnClick(navigateTo(chat.New().Render()))
 
 	betsLink := dom.Anchor("OSB").Tailwind(linkStyles...).
-		OnClick(navigateTo(bets.New().Render()))
+		OnClick(navigateTo(osb.NewOSB().Render()))
 
-	sidebar.Child(homeLink, counterLink, todoLink, userManagementLink, chatLink, betsLink)
+	sidebar.Child(homeLink, counterLink, counterSignalTC39Link, todoLink, userManagementLink, chatLink, betsLink)
 
 	return sidebar
 }

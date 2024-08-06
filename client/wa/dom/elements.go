@@ -205,6 +205,13 @@ func (node HTMLNode) Tailwind(classes ...tlw.TailwindClass) HTMLNode {
 	return node
 }
 
+func (node HTMLNode) TailwindRemove(classes ...tlw.TailwindClass) HTMLNode {
+	for _, class := range classes {
+		node.value.Get("classList").Call("remove", string(class))
+	}
+	return node
+}
+
 func ToGlobalValue(value js.Value) HTMLNode {
 	return HTMLNode{value: value}
 }
@@ -220,4 +227,12 @@ func (node HTMLNode) AddRow(data []string) {
 
 func (node HTMLNode) ReplaceWith(newNode HTMLNode) {
 	node.value.Call("replaceWith", newNode.Value())
+}
+
+func (node HTMLNode) Parent() HTMLNode {
+	return HTMLNode{value: node.value.Get("parentNode")}
+}
+
+func (node HTMLNode) Remove() {
+	node.value.Call("remove")
 }

@@ -1,50 +1,66 @@
 package signal
 
-import (
-	"sync"
-)
+import "sync"
 
-type Updatable interface {
-	UpdateDOM()
+// SignalInterface defines the methods that both Signal and ComputedSignal must implement
+type SignalInterface interface {
+	Get() any
+	Subscribe(listener func(any))
 }
 
+// Signal represents a simple signal
 type Signal[T any] struct {
+	mu        sync.RWMutex
 	value     T
-	listeners map[Updatable]func(T)
-	mu        sync.Mutex
+	listeners []func(T)
 }
 
 func NewSignal[T any](initial T) *Signal[T] {
 	return &Signal[T]{
 		value:     initial,
-		listeners: make(map[Updatable]func(T)),
+		listeners: []func(T){},
 	}
 }
 
 func (s *Signal[T]) Get() T {
-	s.mu.Lock()
-	defer s.mu.Unlock()
+	s.mu.RLock()
+	defer s.mu.RUnlock()
 	return s.value
 }
 
 func (s *Signal[T]) Set(newValue T) {
 	s.mu.Lock()
 	s.value = newValue
+	listeners := s.listeners
 	s.mu.Unlock()
-	s.notify()
+	for _, listener := range listeners {
+		listener(newValue)
+	}
 }
 
 func (s *Signal[T]) Subscribe(listener func(T)) {
 	s.mu.Lock()
-	defer s.mu.Unlock()
+	s.listeners = append(s.listeners, listener)
+	s.mu.Unlock()
 	listener(s.value) // Notify immediately with the current value
 }
 
-func (s *Signal[T]) notify() {
-	s.mu.Lock()
-	defer s.mu.Unlock()
-	for component, listener := range s.listeners {
-		listener(s.value)
-		component.UpdateDOM()
-	}
+// ToSignalInterface converts a Signal to SignalInterface
+func (s *Signal[T]) ToSignalInterface() SignalInterface {
+	return &signalWrapper[T]{s}
+}
+
+// signalWrapper wraps a Signal to implement SignalInterface
+type signalWrapper[T any] struct {
+	signal *Signal[T]
+}
+
+func (sw *signalWrapper[T]) Get() any {
+	return sw.signal.Get()
+}
+
+func (sw *signalWrapper[T]) Subscribe(listener func(any)) {
+	sw.signal.Subscribe(func(value T) {
+		listener(value)
+	})
 }
