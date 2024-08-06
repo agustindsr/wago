@@ -11,14 +11,14 @@ type Task struct {
 
 var tasks []Task
 
-type Component struct {
+type TodoList struct {
 	Input  dom.HTMLNode
 	Button dom.HTMLNode
 	List   dom.HTMLNode
 }
 
 func Render() dom.HTMLNode {
-	component := Component{
+	component := TodoList{
 		Input: dom.Input().SetPlaceholder("Add a new task").
 			Tailwind(tlw.P2, tlw.Border, tlw.BorderGray300, tlw.RoundedMd, tlw.Mb2),
 		Button: dom.Button("Add Task").
@@ -33,14 +33,15 @@ func Render() dom.HTMLNode {
 	container := dom.Div().Tailwind(tlw.MxAuto, tlw.P4, tlw.BgWhite, tlw.ShadowMd, tlw.RoundedLg).
 		Child(
 			dom.H2("Todo List").Tailwind(tlw.Text2Xl, tlw.FontBold, tlw.Mb4),
-			dom.Div().Child(component.Input, component.Button).Tailwind(tlw.Flex, tlw.SpaceX2),
+			dom.Div().
+				Child(component.Input, component.Button).Tailwind(tlw.Flex, tlw.SpaceX2),
 			component.List,
 		)
 
 	return container
 }
 
-func (c *Component) AddTask(_ dom.Event) {
+func (c *TodoList) AddTask(_ dom.Event) {
 	text := c.Input.GetValue().String()
 	if text == "" {
 		return
@@ -61,13 +62,13 @@ func (c *Component) AddTask(_ dom.Event) {
 	c.Input.SetValue("")
 }
 
-func (c *Component) AddTaskOnEnter(e dom.Event) {
+func (c *TodoList) AddTaskOnEnter(e dom.Event) {
 	if e.IsKeyCodeEnter() {
 		c.AddTask(e)
 	}
 }
 
-func (c *Component) DeleteTask(listItem dom.HTMLNode, text string) dom.Func {
+func (c *TodoList) DeleteTask(listItem dom.HTMLNode, text string) dom.Func {
 	return func(_ dom.Event) {
 		for i, item := range tasks {
 			if item.Text == text {
