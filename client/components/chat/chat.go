@@ -122,6 +122,7 @@ func (c *Chat) NewConn() (*Conn, error) {
 		fmt.Println(err, "ERROR")
 		return nil, err
 	}
+
 	c.connected = true
 	c.updateVisibility()
 
