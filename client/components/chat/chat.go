@@ -106,23 +106,28 @@ func (c *Chat) updateVisibility() {
 }
 
 func (c *Chat) connectWebSocket() {
-	conn := c.NewConn()
+	conn, err := c.NewConn()
+	if err != nil {
+		c.ConnectionState.SetInnerHTML("Error al establecer conexión con el servidor")
+		return
+	}
+
 	c.Conn = conn
 	go c.readMessage()
 }
 
-func (c *Chat) NewConn() *Conn {
+func (c *Chat) NewConn() (*Conn, error) {
 	conn, _, err := websocket.Dial(context.Background(), "ws://localhost:8080/ws", nil)
 	if err != nil {
 		fmt.Println(err, "ERROR")
-		return nil
+		return nil, err
 	}
 	c.connected = true
 	c.updateVisibility()
 
 	return &Conn{
 		wsConn: conn,
-	}
+	}, nil
 }
 
 func (c *Chat) readMessage() {
