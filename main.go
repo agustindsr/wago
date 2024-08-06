@@ -10,6 +10,11 @@ import (
 )
 
 func main() {
+	defer func() {
+		if r := recover(); r != nil {
+			dom.ConsoleLog(r)
+		}
+	}()
 	dom.Body().Tailwind(tlw.Flex, tlw.HFull).
 		Child(
 			menu.Render(),
