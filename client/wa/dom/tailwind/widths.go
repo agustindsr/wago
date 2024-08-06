@@ -29,6 +29,7 @@ const (
 	W24   TailwindClass = "w-24"
 	W32   TailwindClass = "w-32"
 	W40   TailwindClass = "w-40"
+	W44   TailwindClass = "w-44"
 	W48   TailwindClass = "w-48"
 	W56   TailwindClass = "w-56"
 	W64   TailwindClass = "w-64"

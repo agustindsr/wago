@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"sync"
 	"wasm/client/components/draftea/osb/ticket"
+	"wasm/client/css"
 	"wasm/client/repositories/draftea"
 	"wasm/client/wa/dom"
 	"wasm/client/wa/dom/signal"
@@ -58,7 +59,7 @@ func (b *BetsTeamGame) Render() dom.HTMLNode {
 }
 
 func (b *BetsTeamGame) renderCard(card draftea.CardDTO) dom.HTMLNode {
-	cardContainer := dom.Div().Tailwind(tlw.BgGray800, tlw.RoundedLg, tlw.ShadowLg, tlw.P3, tlw.MaxWSm, tlw.Mx4)
+	cardContainer := dom.Div().Tailwind(tlw.RoundedLg, tlw.ShadowLg, tlw.P3, tlw.MaxWSm, tlw.Mx4).AddClass(css.BgTeriary700)
 
 	gameInfo := dom.Div().Tailwind(tlw.Flex, tlw.JustifyBetween, tlw.ItemsCenter, tlw.Mb4).Child(
 		dom.Div().Child(
@@ -104,7 +105,7 @@ func (b *BetsTeamGame) renderGroup(card draftea.CardDTO, group draftea.GroupDTO)
 
 func (b *BetsTeamGame) renderOption(card draftea.CardDTO, option draftea.OptionDTO) dom.HTMLNode {
 	e := dom.Button("").OnClick(b.clickOdd(card, option)).
-		Tailwind(tlw.BgGray700, tlw.TextWhite, tlw.Rounded, tlw.TextSm, tlw.HoverBgGray600, tlw.W32).
+		Tailwind(tlw.TextWhite, tlw.Rounded, tlw.TextSm, tlw.HoverBgGray600, tlw.W32).AddClass(css.BgTeriary500).
 		Child(
 			dom.Div().Tailwind(tlw.TextGray400).SetInnerHTML(option.Prediction),
 			dom.Div().Tailwind(tlw.FontBold).SetInnerHTML(fmt.Sprintf("%.2fx", option.Multiplier)),

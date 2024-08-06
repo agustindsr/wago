@@ -35,7 +35,7 @@ func (c *CounterSignal) Render() dom.HTMLNode {
 		Tailwind(tlw.P2, tlw.BgWhite, tlw.TextBlack, tlw.Border, tlw.Rounded, tlw.HoverTextWhite, tlw.HoverBgBlue700)
 
 	container := dom.Div().
-		Tailwind(tlw.MaxWXl, tlw.P4, tlw.BgWhite, tlw.RoundedLg, tlw.Flex, tlw.FlexCol).
+		Tailwind(tlw.MaxWXl, tlw.P4, tlw.RoundedLg, tlw.Flex, tlw.FlexCol).
 		Child(
 			dom.H2("Counter").Tailwind(tlw.Text2Xl, tlw.FontBold, tlw.Mb4),
 			c.CountLabel,

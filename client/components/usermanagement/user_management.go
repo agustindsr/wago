@@ -61,7 +61,7 @@ func Render() dom.HTMLNode {
 
 	component.SaveButton.OnClick(component.SaveUser)
 
-	container := dom.Div().Tailwind(tlw.MaxWXl, tlw.P4, tlw.BgWhite, tlw.RoundedLg).
+	container := dom.Div().Tailwind(tlw.MaxWXl, tlw.P4, tlw.RoundedLg).
 		Child(
 			dom.H2("User Management").Tailwind(tlw.Text2Xl, tlw.FontBold, tlw.Mb4),
 			dom.Div().Child(component.NameInput, component.EmailInput, component.AddButton).Tailwind(tlw.Flex, tlw.SpaceX2),

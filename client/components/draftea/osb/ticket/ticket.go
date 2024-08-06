@@ -49,7 +49,7 @@ func (t *Ticket) Render() dom.HTMLNode {
 		Tailwind(tlw.WFull, tlw.P2, tlw.Mb4).OnChange(t.OnChangeEntryAmount)
 	betListContainer := dom.Div()
 
-	ticketContainer := dom.Div().SetID("ticket-container").Tailwind(tlw.BgGray800, tlw.RoundedLg, tlw.ShadowLg, tlw.P6, tlw.MaxWSm, tlw.Mx4, tlw.Mb4).
+	ticketContainer := dom.Div().SetID("ticket-container").Tailwind(tlw.RoundedLg, tlw.ShadowLg, tlw.P6, tlw.MaxWSm, tlw.Mx4, tlw.Mb4).
 		Child(title, betListContainer, multiplierLabel, winningAmountLabel, entryAmountLabel)
 
 	t.entryAmountRef = entryAmountLabel

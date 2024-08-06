@@ -29,4 +29,7 @@ const (
 	Minh2_3  TailwindClass = "min-h-2/3"
 	Minh1_4  TailwindClass = "min-h-1/4"
 	Minh3_4  TailwindClass = "min-h-3/4"
+
+	Leading3 TailwindClass = "leading-3"
+	Leading6 TailwindClass = "leading-6"
 )

@@ -5,6 +5,7 @@ package main
 import (
 	"wasm/client/components/home"
 	"wasm/client/components/menu"
+	"wasm/client/css"
 	"wasm/client/wa/dom"
 	tlw "wasm/client/wa/dom/tailwind"
 )
@@ -15,7 +16,7 @@ func main() {
 			dom.ConsoleLog(r)
 		}
 	}()
-	dom.Body().Tailwind(tlw.Flex, tlw.HFull).
+	dom.Body().Tailwind(tlw.Flex, tlw.HFull, tlw.TextWhite).AddClass(css.BgTeriary900).
 		Child(
 			menu.Render(),
 			dom.Div().

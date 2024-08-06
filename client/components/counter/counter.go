@@ -26,14 +26,14 @@ func NewCounter() *Counter {
 	c.DecrementButton = dom.Button("Decrement").OnClick(c.Decrement).
 		Tailwind(tlw.P2, tlw.BgRed700, tlw.TextWhite, tlw.Rounded, tlw.HoverBgRed900)
 	c.ResetButton = dom.Button("Reset").OnClick(c.Reset).
-		Tailwind(tlw.P2, tlw.BgWhite, tlw.TextBlack, tlw.Border, tlw.Rounded, tlw.HoverTextWhite, tlw.HoverBgBlue700)
+		Tailwind(tlw.P2, tlw.TextBlack, tlw.Border, tlw.Rounded, tlw.HoverTextWhite, tlw.HoverBgBlue700)
 
 	return c
 }
 
 func (c *Counter) Render() dom.HTMLNode {
 	container := dom.Div().
-		Tailwind(tlw.MaxWXl, tlw.P4, tlw.BgWhite, tlw.RoundedLg, tlw.Flex, tlw.FlexCol).
+		Tailwind(tlw.MaxWXl, tlw.P4, tlw.RoundedLg, tlw.Flex, tlw.FlexCol).
 		Child(
 			dom.H2("Counter").Tailwind(tlw.Text2Xl, tlw.FontBold, tlw.Mb4),
 			c.CountLabel,

@@ -1,0 +1,41 @@
+/* styles.css */
+.bg-tertiary-700 {
+    background-color: var(--background--backgroundtertiary-700);
+}
+
+.bg-tertiary-500 {
+    background-color: var(--background--backgroundtertiary-500);
+}
+
+.bg-tertiary-900 {
+    background-color: var(--background--backgroundtertiary-900);
+}
+
+.text-custom {
+    color: var(--text-custom);
+}
+
+/* Define tus variables CSS */
+:root {
+    --background--backgroundtertiary-900: #021124;
+    --background--backgroundtertiary-700: #022954;
+    --background--backgroundtertiary-500: #f0f2f414;
+    --text-custom: #333333;
+}
+
+.sidebar-collapsed {
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s ease;
+}
+
+input, textarea {
+    color: black;!important /* Cambia 'black' al color que desees */
+}
+
+@media (max-width: 768px) {
+    .sidebar-hidden {
+        display: none;
+    }
+}
+

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"sync"
 	"wasm/client/components/draftea/osb/ticket"
+	"wasm/client/css"
 	draftea "wasm/client/repositories/draftea/players"
 	"wasm/client/wa/dom"
 	"wasm/client/wa/dom/signal"
@@ -58,9 +59,9 @@ func (b *BetsPlayer) Render() dom.HTMLNode {
 }
 
 func (b *BetsPlayer) renderBetCard(bet draftea.BetPlayerGameDTO) dom.HTMLNode {
-	cardContainer := dom.Div().Tailwind(tlw.BgGray800, tlw.RoundedLg, tlw.ShadowLg, tlw.MaxW1_4, tlw.P0, tlw.M0)
+	cardContainer := dom.Div().Tailwind(tlw.RoundedLg, tlw.ShadowLg, tlw.MaxW1_4, tlw.P0, tlw.M0).AddClass(css.BgTeriary700)
 
-	playerInfo := dom.Div().Tailwind(tlw.TextWhite, tlw.Px0, tlw.PT2, tlw.JustifyCenter)
+	playerInfo := dom.Div().Tailwind(tlw.TextWhite, tlw.Px0, tlw.P2, tlw.JustifyCenter)
 
 	if bet.Player.Image != "" {
 		playerInfo.Child(dom.Img(bet.Player.Image).Tailwind(tlw.W16, tlw.H16, tlw.Mb2))
@@ -105,7 +106,7 @@ func getAbbreviation(team *draftea.TeamDTO) string {
 }
 
 func (b *BetsPlayer) renderCard(bet draftea.BetPlayerGameDTO, card draftea.CardDTO) dom.HTMLNode {
-	cardContainer := dom.Div().Tailwind(tlw.BgGray700, tlw.RoundedMd, tlw.P0, tlw.M0)
+	cardContainer := dom.Div().Tailwind(tlw.RoundedMd, tlw.P0, tlw.M0)
 
 	cardValue := dom.Div().Tailwind(tlw.TextWhite, tlw.FontBold, tlw.TextXl, tlw.M0).SetInnerHTML(fmt.Sprintf("%.1f Tiros", card.Value))
 	cardContainer.Child(cardValue)
@@ -123,10 +124,11 @@ func (b *BetsPlayer) renderCard(bet draftea.BetPlayerGameDTO, card draftea.CardD
 
 func (b *BetsPlayer) renderOdd(bet draftea.BetPlayerGameDTO, odd draftea.OddDTO) dom.HTMLNode {
 	e := dom.Button("").OnClick(b.clickOdd(bet, odd)).
-		Tailwind(tlw.BgGray700, tlw.TextWhite, tlw.Rounded, tlw.TextSm, tlw.HoverBgGray600, tlw.W20, tlw.JustifyCenter).
+		Tailwind(tlw.TextWhite, tlw.Rounded, tlw.TextSm, tlw.HoverBgGray600, tlw.W20, tlw.JustifyCenter, tlw.Border).
+		AddClass(css.BgTeriary500).
 		Child(
-			dom.Div().Tailwind(tlw.TextGray300, tlw.TextSm, tlw.P0, tlw.M0).SetInnerHTML(odd.Prediction),
-			dom.Div().Tailwind(tlw.TextWhite, tlw.FontBold, tlw.TextSm, tlw.P0, tlw.M0).SetInnerHTML(fmt.Sprintf("%.2fx", odd.Multiplier)),
+			dom.Div().Tailwind(tlw.TextSm, tlw.P0, tlw.M0).SetInnerHTML(odd.Prediction),
+			dom.Div().Tailwind(tlw.FontBold, tlw.TextSm, tlw.P0, tlw.M0).SetInnerHTML(fmt.Sprintf("%.2fx", odd.Multiplier)),
 		)
 
 	b.OptionsMapRef[OptionsKey{BetID: bet.ID, OddID: odd.ID}] = e

@@ -33,12 +33,12 @@ type Chat struct {
 
 func New() *Chat {
 	chat := &Chat{
-		LoginInput:   dom.Input().SetPlaceholder("Enter your username").Tailwind(tlw.Mb4, tlw.P2, tlw.Border, tlw.BorderGray300, tlw.Rounded),
-		LoginButton:  dom.Button("Login").Tailwind(tlw.Px4, tlw.Py2, tlw.BgBlue500, tlw.TextWhite, tlw.Rounded, tlw.HoverBgBlue700, tlw.TextSm),
+		LoginInput:   dom.Input().SetPlaceholder("Enter your username").Tailwind(tlw.Mb4, tlw.P2, tlw.Border, tlw.BorderGray300, tlw.Rounded, tlw.TextBlack),
+		LoginButton:  dom.Button("Login").Tailwind(tlw.Px4, tlw.Py2, tlw.BgBlue500, tlw.Rounded, tlw.HoverBgBlue700, tlw.TextSm),
 		MessageList:  dom.UL().Tailwind(tlw.ListNone, tlw.P0, tlw.Mt4, tlw.HFull, tlw.OverflowYScroll, tlw.Flex1),
-		MessageInput: dom.Input().SetPlaceholder("Type a message...").Tailwind(tlw.Mb4, tlw.P2, tlw.Border, tlw.BorderGray300, tlw.Rounded),
-		SendButton:   dom.Button("Send").Tailwind(tlw.Px4, tlw.Py2, tlw.BgBlue500, tlw.TextWhite, tlw.Rounded, tlw.HoverBgBlue700, tlw.TextSm),
-		UserList:     dom.UL().Tailwind(tlw.ListNone, tlw.P0, tlw.Mt4, tlw.FlexNone, tlw.W48, tlw.BgGray100, tlw.Py2, tlw.Px4, tlw.OverflowYScroll),
+		MessageInput: dom.Input().SetPlaceholder("Type a message...").Tailwind(tlw.Mb4, tlw.P2, tlw.Border, tlw.BorderGray300, tlw.Rounded, tlw.TextBlack),
+		SendButton:   dom.Button("Send").Tailwind(tlw.Px4, tlw.Py2, tlw.BgBlue500, tlw.Rounded, tlw.HoverBgBlue700, tlw.TextSm),
+		UserList:     dom.UL().Tailwind(tlw.ListNone, tlw.P0, tlw.Mt4, tlw.FlexNone, tlw.W48, tlw.Py2, tlw.Px4, tlw.OverflowYScroll),
 		ConnectionState: dom.Div().Tailwind(tlw.TextXl, tlw.FontBold, tlw.Mb4).
 			SetInnerHTML("Estableciendo conexión con el servidor..."),
 		loggedIn:  false,
@@ -48,7 +48,7 @@ func New() *Chat {
 	chat.LoginInput.OnKeyUp(chat.OnLoginKeyUp())
 	chat.MessageInput.OnKeyUp(chat.OnMessageKeyUp())
 
-	chat.LoginForm = dom.Div().Tailwind(tlw.MaxWXl, tlw.P4, tlw.BgWhite, tlw.RoundedLg, tlw.Hidden).
+	chat.LoginForm = dom.Div().Tailwind(tlw.MaxWXl, tlw.P4, tlw.RoundedLg, tlw.Hidden).
 		Child(
 			dom.H2("Login").Tailwind(tlw.Text2Xl, tlw.FontBold, tlw.Mb4),
 			chat.LoginInput,
@@ -57,7 +57,7 @@ func New() *Chat {
 	chat.LoginButton.OnClick(chat.Login)
 	chat.SendButton.OnClick(chat.SendMessage)
 
-	chat.ChatContainer = dom.Div().Tailwind(tlw.P4, tlw.BgWhite, tlw.RoundedLg, tlw.Hidden, tlw.W1_2).
+	chat.ChatContainer = dom.Div().Tailwind(tlw.P4, tlw.RoundedLg, tlw.Hidden, tlw.W1_2).
 		Child(
 			dom.H2("Chat").Tailwind(tlw.Text2Xl, tlw.FontBold, tlw.Mb4),
 			dom.Div().Tailwind(tlw.Flex, tlw.Minh1_2).Child(

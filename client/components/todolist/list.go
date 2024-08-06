@@ -30,7 +30,7 @@ func Render() dom.HTMLNode {
 	component.Button.OnClick(component.AddTask)
 	component.Input.OnKeyUp(component.AddTaskOnEnter)
 
-	container := dom.Div().Tailwind(tlw.MxAuto, tlw.P4, tlw.BgWhite, tlw.ShadowMd, tlw.RoundedLg).
+	container := dom.Div().Tailwind(tlw.MxAuto, tlw.P4, tlw.ShadowMd, tlw.RoundedLg).
 		Child(
 			dom.H2("Todo List").Tailwind(tlw.Text2Xl, tlw.FontBold, tlw.Mb4),
 			dom.Div().
