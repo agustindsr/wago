@@ -7,47 +7,35 @@ import (
 	"wasm/pkg/router"
 )
 
+type menuLink struct {
+	Path string
+	Name string
+}
+
 func Render(r *router.Router) dom.HTMLNode {
 	sidebar := dom.Div().SetID("sidebar").Tailwind(
 		tlw.Flex, tlw.FlexCol, tlw.HScreen, tlw.W64, tlw.Py4, tlw.Px3, tlw.SpaceY6).AddClass(css.BgTeriary500)
 
 	linkStyles := []tlw.TailwindClass{tlw.Block, tlw.Py2, tlw.Px4, tlw.RoundedMd, tlw.TextGray300, tlw.HoverBgGray700, tlw.HoverTextWhite, tlw.CursorPointer}
 
-	homeLink := dom.Anchor("Home").Tailwind(linkStyles...).OnClick(func(_ dom.Event) {
-		r.NavigateTo("/")
-	})
+	links := []menuLink{
+		{Path: "/", Name: "Home"},
+		{Path: "/todolist", Name: "Todo List"},
+		{Path: "/counter", Name: "Counter"},
+		{Path: "/counter-signal", Name: "Counter Signal"},
+		{Path: "/user-management", Name: "User Management"},
+		{Path: "/chat", Name: "Chat"},
+		{Path: "/osb", Name: "OSB"},
+	}
 
-	todoLink := dom.Anchor("Todo List").Tailwind(linkStyles...).OnClick(func(_ dom.Event) {
-		r.NavigateTo("/todolist")
-	})
-	counterLink := dom.Anchor("Counter").Tailwind(linkStyles...).OnClick(func(_ dom.Event) {
-		r.NavigateTo("/counter")
-	})
-	counterSignalTC39Link := dom.Anchor("Counter Signal").Tailwind(linkStyles...).OnClick(func(_ dom.Event) {
-		r.NavigateTo("/counter-signal")
-	})
-	userManagementLink := dom.Anchor("User Management").Tailwind(linkStyles...).OnClick(func(_ dom.Event) {
-		r.NavigateTo("/user-management")
-	})
-	chatLink := dom.Anchor("Chat").Tailwind(linkStyles...).OnClick(func(_ dom.Event) {
-		r.NavigateTo("/chat")
-	})
-	betsLink := dom.Anchor("OSB").Tailwind(linkStyles...).OnClick(func(_ dom.Event) {
-		r.NavigateTo("/osb")
-	})
-
-	minimizeButton := dom.Button("Minimize").Tailwind(tlw.P2, tlw.BgRed500, tlw.TextWhite, tlw.Rounded, tlw.CursorPointer).OnClick(toggleSidebar)
-
-	sidebar.Child(minimizeButton, homeLink, todoLink, counterLink, counterSignalTC39Link, userManagementLink, chatLink, betsLink)
+	for _, link := range links {
+		l := dom.Anchor(link.Name).Tailwind(linkStyles...).OnClick(func(path string) dom.Func {
+			return func(_ dom.Event) {
+				r.NavigateTo(path)
+			}
+		}(link.Path))
+		sidebar.Child(l)
+	}
 
 	return sidebar
-}
-
-func toggleSidebar(_ dom.Event) {
-	sidebar := dom.ElementByID("sidebar")
-	if sidebar.HasClass(css.SidebarCollapsed) {
-		sidebar.RemoveClass(css.SidebarCollapsed)
-	} else {
-		sidebar.AddClass(css.SidebarCollapsed)
-	}
 }
