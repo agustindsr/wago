@@ -27,7 +27,7 @@ func Render(r *router.Router) dom.HTMLNode {
 		r.NavigateTo("/counter-signal")
 	})
 	userManagementLink := dom.Anchor("User Management").Tailwind(linkStyles...).OnClick(func(_ dom.Event) {
-		r.NavigateTo("/usermanagement")
+		r.NavigateTo("/user-management")
 	})
 	chatLink := dom.Anchor("Chat").Tailwind(linkStyles...).OnClick(func(_ dom.Event) {
 		r.NavigateTo("/chat")
