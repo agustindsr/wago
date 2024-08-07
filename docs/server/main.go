@@ -10,7 +10,7 @@ import (
 func main() {
 	dirPath := "./docs"
 
-	checkDirectoryAndFiles(dirPath, []string{"index.html", "play.wasm", "404.html"})
+	checkDirectoryAndFiles(dirPath, []string{"index.html", "play.wasm"})
 
 	fs := http.FileServer(http.Dir(dirPath))
 	http.Handle("/", logRequests(fs, dirPath))
