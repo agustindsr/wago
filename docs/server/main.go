@@ -10,7 +10,6 @@ import (
 func main() {
 	dirPath := "./docs"
 
-	// Verificar la existencia del directorio y algunos archivos clave
 	checkDirectoryAndFiles(dirPath, []string{"index.html", "play.wasm", "404.html"})
 
 	fs := http.FileServer(http.Dir(dirPath))
