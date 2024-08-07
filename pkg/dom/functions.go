@@ -31,3 +31,11 @@ func (e Event) StopPropagation() {
 func (e Event) IsKeyCodeEnter() bool {
 	return e.KeyCode() == 13
 }
+
+func (e Event) OffsetX() float64 {
+	return e.jsEvent.Get("offsetX").Float()
+}
+
+func (e Event) OffsetY() float64 {
+	return e.jsEvent.Get("offsetY").Float()
+}

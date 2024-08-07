@@ -27,6 +27,8 @@ func Render(r *router.Router) dom.HTMLNode {
 		{Path: "/chat", Name: "Chat"},
 		{Path: "/osb", Name: "OSB"},
 		{Path: "/performance", Name: "Performance"},
+		{Path: "/webcam", Name: "Webcam"},
+		{Path: "/canvas", Name: "Canvas"},
 	}
 
 	for _, link := range links {

@@ -3,6 +3,7 @@
 package main
 
 import (
+	"wasm/client/components/canvas"
 	"wasm/client/components/chat"
 	"wasm/client/components/counter"
 	"wasm/client/components/draftea/osb"
@@ -11,6 +12,7 @@ import (
 	"wasm/client/components/performance"
 	"wasm/client/components/todolist"
 	"wasm/client/components/usermanagement"
+	"wasm/client/components/webcam"
 	"wasm/pkg/dom"
 	tlw "wasm/pkg/dom/tailwind"
 	"wasm/pkg/router"
@@ -33,6 +35,8 @@ func main() {
 	r.AddRoute("/user-management", usermanagement.Render)
 	r.AddRoute("/chat", chat.New().Render)
 	r.AddRoute("/performance", performance.NewPerformanceComponent().Render)
+	r.AddRoute("/webcam", webcam.NewCameraComponent().Render)
+	r.AddRoute("/canvas", canvas.NewCanvasComponent().Render)
 
 	dom.ElementByID("app").SetInnerHTML("")
 	dom.ElementByID("app").Child(renderApp(r))

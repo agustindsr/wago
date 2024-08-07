@@ -58,6 +58,18 @@ func (node HTMLNode) OnMouseMove(fn Func) HTMLNode {
 	return node.AddEventListener(eventMouseMove, fn)
 }
 
+func (node HTMLNode) OnMouseDown(fn Func) HTMLNode {
+	return node.AddEventListener("mousedown", fn)
+}
+
+func (node HTMLNode) OnMouseUp(fn Func) HTMLNode {
+	return node.AddEventListener("mouseup", fn)
+}
+
+func (node HTMLNode) OnMouseOut(fn Func) HTMLNode {
+	return node.AddEventListener("mouseout", fn)
+}
+
 func (node HTMLNode) OnKeyDown(fn Func) HTMLNode {
 	return node.AddEventListener(eventKeyDown, fn)
 }

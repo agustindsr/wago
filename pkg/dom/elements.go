@@ -1,6 +1,7 @@
 package dom
 
 import (
+	"strconv"
 	"syscall/js"
 	"wasm/pkg/dom/tailwind"
 )
@@ -179,7 +180,14 @@ func (node HTMLNode) GetValue() HTMLNode {
 }
 
 func (node HTMLNode) Float() float64 {
-	return node.value.Float()
+	val, err := strconv.ParseFloat(node.GetValue().String(), 64)
+	if err != nil {
+		return 0.0
+	}
+	return val
+}
+func (node HTMLNode) Int() int {
+	return node.GetValue().value.Int()
 }
 
 func (node HTMLNode) Set(name string, value any) HTMLNode {

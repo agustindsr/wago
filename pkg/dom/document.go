@@ -1,5 +1,7 @@
 package dom
 
+import "syscall/js"
+
 func Document() HTMLNode {
 	return Global("document")
 }
@@ -40,4 +42,23 @@ func InjectCSS(css string) {
 
 func PushHistoryState(state any, title, url string) {
 	Global("history").Call("pushState", state, title, url)
+}
+
+func AwaitPromise(promise js.Value) (<-chan js.Value, <-chan error) {
+	success := make(chan js.Value)
+	failure := make(chan error)
+
+	then := js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		success <- args[0]
+		return nil
+	})
+
+	catch := js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		failure <- js.Error{Value: args[0]}
+		return nil
+	})
+
+	promise.Call("then", then).Call("catch", catch)
+
+	return success, failure
 }
