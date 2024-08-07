@@ -1,6 +1,6 @@
 package footer
 
-import "wasm/client/wa/dom"
+import "wasm/pkg/dom"
 
 func Render() dom.HTMLNode {
 	footer := dom.Footer()

@@ -3,8 +3,8 @@ package draftea
 import (
 	"fmt"
 	"time"
-	"wasm/client/wa/dom"
-	"wasm/client/wa/http"
+	"wasm/pkg/dom"
+	"wasm/pkg/http"
 )
 
 type (

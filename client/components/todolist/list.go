@@ -1,8 +1,8 @@
 package todolist
 
 import (
-	"wasm/client/wa/dom"
-	"wasm/client/wa/dom/tailwind"
+	"wasm/pkg/dom"
+	"wasm/pkg/dom/tailwind"
 )
 
 type Task struct {

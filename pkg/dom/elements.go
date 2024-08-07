@@ -2,7 +2,7 @@ package dom
 
 import (
 	"syscall/js"
-	"wasm/client/wa/dom/tailwind"
+	"wasm/pkg/dom/tailwind"
 )
 
 const (

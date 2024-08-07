@@ -1,8 +1,8 @@
 package jsonapi
 
 import (
-	"wasm/client/wa/dom"
-	"wasm/client/wa/http"
+	"wasm/pkg/dom"
+	"wasm/pkg/http"
 )
 
 type Photos []struct {

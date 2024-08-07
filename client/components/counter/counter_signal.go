@@ -2,20 +2,21 @@ package counter
 
 import (
 	"fmt"
-	"wasm/client/wa/dom"
-	"wasm/client/wa/dom/signal"
-	tlw "wasm/client/wa/dom/tailwind"
+	"wasm/pkg/dom"
+	tlw "wasm/pkg/dom/tailwind"
+	"wasm/pkg/signal"
+	signal2 "wasm/pkg/signal"
 )
 
 type CounterSignal struct {
-	Count       *signal.Signal[int]
+	Count       *signal2.Signal[int]
 	CountLabel  dom.HTMLNode
 	ParityLabel dom.HTMLNode
 }
 
 func NewCounterSignal() *CounterSignal {
 	c := &CounterSignal{
-		Count: signal.NewSignal(0),
+		Count: signal2.NewSignal(0),
 	}
 
 	c.CountLabel = dom.Span("").Tailwind(tlw.Text2Xl, tlw.FontBold, tlw.Mb4)

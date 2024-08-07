@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-	"wasm/client/wa/dom"
+	"wasm/pkg/dom"
 )
 
 func Fetch[T any](urlStr string, queryParams map[string]string, headers map[string]string) dom.Func {

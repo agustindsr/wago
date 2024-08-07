@@ -2,8 +2,8 @@ package usermanagement
 
 import (
 	"wasm/client/components/shared/modal"
-	"wasm/client/wa/dom"
-	tlw "wasm/client/wa/dom/tailwind"
+	"wasm/pkg/dom"
+	tlw "wasm/pkg/dom/tailwind"
 )
 
 type User struct {

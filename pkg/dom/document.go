@@ -37,3 +37,7 @@ func InjectCSS(css string) {
 	style.SetInnerHTML(css)
 	Head().Child(style)
 }
+
+func PushHistoryState(state any, title, url string) {
+	Global("history").Call("pushState", state, title, url)
+}

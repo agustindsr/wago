@@ -1,8 +1,8 @@
 package home
 
 import (
-	"wasm/client/wa/dom"
-	tlw "wasm/client/wa/dom/tailwind"
+	"wasm/pkg/dom"
+	tlw "wasm/pkg/dom/tailwind"
 )
 
 func Render() dom.HTMLNode {
