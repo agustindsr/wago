@@ -32,13 +32,12 @@ func (r *Router) NavigateTo(path string) {
 	route, exists := r.routes[path]
 	if !exists {
 		// Handle 404 - Not Found
-		dom.ConsoleLog(path)
 		dom.ElementByID("content").SetInnerHTML("Page not found")
 		return
 	}
 
 	dom.ConsoleLog(fmt.Sprintf("Navigating to %s", path))
-	dom.PushHistoryState(nil, "", "#"+path)
+	dom.PushHistoryState(nil, "", path)
 
 	dom.ElementByID("content").SetInnerHTML("")
 	dom.ElementByID("content").Child(route.Component())
@@ -55,10 +54,17 @@ func (r *Router) HandleNavigation() {
 
 func (r *Router) Initialize() {
 	r.HandleNavigation()
-	dom.ConsoleLog("Router initialized")
 
 	// Listen for hash change events to handle navigation
 	js.Global().Get("window").Call("addEventListener", "hashchange", js.FuncOf(func(this js.Value, args []js.Value) any {
+		dom.ConsoleLog("Hash change detected")
+		r.HandleNavigation()
+		return nil
+	}))
+
+	// Listen for popstate events to handle navigation
+	js.Global().Get("window").Call("addEventListener", "popstate", js.FuncOf(func(this js.Value, args []js.Value) any {
+		dom.ConsoleLog("Popstate detected")
 		r.HandleNavigation()
 		return nil
 	}))

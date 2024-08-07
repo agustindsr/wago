@@ -29,7 +29,7 @@ func main() {
 	r.AddRoute("/todolist", todolist.Render)
 	r.AddRoute("/counter", counter.NewCounter().Render)
 	r.AddRoute("/counter-signal", counter.NewCounterSignal().Render)
-	r.AddRoute("/usermanagement", usermanagement.Render)
+	r.AddRoute("/user-management", usermanagement.Render)
 	r.AddRoute("/chat", chat.New().Render)
 
 	dom.ElementByID("app").SetInnerHTML("")

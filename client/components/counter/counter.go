@@ -55,6 +55,7 @@ func (c *Counter) Increment(_ dom.Event) {
 
 func (c *Counter) Decrement(_ dom.Event) {
 	c.Count--
+	dom.ConsoleLog("Decrement")
 	c.Update()
 }
 
