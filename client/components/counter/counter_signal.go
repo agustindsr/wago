@@ -5,22 +5,21 @@ import (
 	"wasm/pkg/dom"
 	tlw "wasm/pkg/dom/tailwind"
 	"wasm/pkg/signal"
-	signal2 "wasm/pkg/signal"
 )
 
 type CounterSignal struct {
-	Count       *signal2.Signal[int]
-	CountLabel  dom.HTMLNode
-	ParityLabel dom.HTMLNode
+	Count          *signal.Signal[int]
+	CountLabelRef  dom.HTMLNode
+	ParityLabelRef dom.HTMLNode
 }
 
 func NewCounterSignal() *CounterSignal {
 	c := &CounterSignal{
-		Count: signal2.NewSignal(0),
+		Count: signal.NewSignal(0),
 	}
 
-	c.CountLabel = dom.Span("").Tailwind(tlw.Text2Xl, tlw.FontBold, tlw.Mb4)
-	c.ParityLabel = dom.Span("").Tailwind(tlw.TextLg, tlw.FontBold, tlw.Mt2)
+	c.CountLabelRef = dom.Span("").Tailwind(tlw.Text2Xl, tlw.FontBold, tlw.Mb4)
+	c.ParityLabelRef = dom.Span("").Tailwind(tlw.TextLg, tlw.FontBold, tlw.Mt2)
 
 	signal.NewEffect(c.UpdateDOM, c.Count.ToSignalInterface())
 
@@ -39,8 +38,8 @@ func (c *CounterSignal) Render() dom.HTMLNode {
 		Tailwind(tlw.MaxWXl, tlw.P4, tlw.RoundedLg, tlw.Flex, tlw.FlexCol).
 		Child(
 			dom.H2("Counter").Tailwind(tlw.Text2Xl, tlw.FontBold, tlw.Mb4),
-			c.CountLabel,
-			c.ParityLabel,
+			c.CountLabelRef,
+			c.ParityLabelRef,
 			dom.Div().Tailwind(tlw.Flex, tlw.SpaceX2).
 				Child(
 					incrementButton,
@@ -76,6 +75,6 @@ func (c *CounterSignal) IsEven() bool {
 }
 
 func (c *CounterSignal) UpdateDOM() {
-	c.CountLabel.SetInnerHTML(fmt.Sprintf("%d", c.Count.Get()))
-	c.ParityLabel.SetInnerHTML(c.Parity())
+	c.CountLabelRef.SetInnerHTML(fmt.Sprintf("%d", c.Count.Get()))
+	c.ParityLabelRef.SetInnerHTML(c.Parity())
 }

@@ -7,6 +7,7 @@ import (
 
 const (
 	tableElement  = "table"
+	thElement     = "th"
 	trElement     = "tr"
 	tdElement     = "td"
 	divElement    = "div"
@@ -64,6 +65,10 @@ func TR() HTMLNode {
 
 func TD() HTMLNode {
 	return Element(tdElement)
+}
+
+func TH() HTMLNode {
+	return Element(thElement)
 }
 
 func Footer() HTMLNode {

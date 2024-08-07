@@ -14,7 +14,7 @@ type menuLink struct {
 
 func Render(r *router.Router) dom.HTMLNode {
 	sidebar := dom.Div().SetID("sidebar").Tailwind(
-		tlw.Flex, tlw.FlexCol, tlw.HScreen, tlw.W64, tlw.Py4, tlw.Px3, tlw.SpaceY6).AddClass(css.BgTeriary500)
+		tlw.Flex, tlw.FlexCol, tlw.HScreen, tlw.W64, tlw.Py4, tlw.Px3, tlw.SpaceY6).AddClass(css.BgTeriary700)
 
 	linkStyles := []tlw.TailwindClass{tlw.Block, tlw.Py2, tlw.Px4, tlw.RoundedMd, tlw.TextGray300, tlw.HoverBgGray700, tlw.HoverTextWhite, tlw.CursorPointer}
 
@@ -26,6 +26,7 @@ func Render(r *router.Router) dom.HTMLNode {
 		{Path: "/user-management", Name: "User Management"},
 		{Path: "/chat", Name: "Chat"},
 		{Path: "/osb", Name: "OSB"},
+		{Path: "/performance", Name: "Performance"},
 	}
 
 	for _, link := range links {

@@ -10,7 +10,6 @@ import (
 	"wasm/pkg/dom"
 	tlw "wasm/pkg/dom/tailwind"
 	"wasm/pkg/signal"
-	signal2 "wasm/pkg/signal"
 )
 
 type OptionsKey struct {
@@ -20,12 +19,12 @@ type OptionsKey struct {
 
 type BetsTeamGame struct {
 	BetsData      draftea.Response
-	Ticket        *signal2.Signal[*ticket.Ticket]
+	Ticket        *signal.Signal[*ticket.Ticket]
 	OptionsMapRef map[OptionsKey]dom.HTMLNode
 	mu            sync.RWMutex
 }
 
-func New(ticket *signal2.Signal[*ticket.Ticket]) *BetsTeamGame {
+func New(ticket *signal.Signal[*ticket.Ticket]) *BetsTeamGame {
 	resp := GetBetsFromJSON()
 
 	b := &BetsTeamGame{

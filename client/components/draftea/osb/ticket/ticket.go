@@ -7,7 +7,6 @@ import (
 	"wasm/pkg/dom"
 	tlw "wasm/pkg/dom/tailwind"
 	"wasm/pkg/signal"
-	signal2 "wasm/pkg/signal"
 )
 
 type ticketBet struct {
@@ -20,10 +19,10 @@ type ticketBet struct {
 }
 
 type Ticket struct {
-	TicketBets         *signal2.Signal[[]ticketBet]
-	EntryAmount        *signal2.Signal[float64]
+	TicketBets         *signal.Signal[[]ticketBet]
+	EntryAmount        *signal.Signal[float64]
 	WinAmount          float64
-	signal             *signal2.Signal[*Ticket]
+	signal             *signal.Signal[*Ticket]
 	winAmountLabelRef  dom.HTMLNode
 	multiplierLabelRef dom.HTMLNode
 	entryAmountRef     dom.HTMLNode
@@ -33,11 +32,11 @@ type Ticket struct {
 
 func New() *Ticket {
 	t := &Ticket{
-		TicketBets:  signal2.NewSignal([]ticketBet{}),
-		EntryAmount: signal2.NewSignal(float64(100)),
+		TicketBets:  signal.NewSignal([]ticketBet{}),
+		EntryAmount: signal.NewSignal(float64(100)),
 	}
 
-	t.signal = signal2.NewSignal(t)
+	t.signal = signal.NewSignal(t)
 
 	return t
 }
@@ -166,6 +165,6 @@ func (t *Ticket) IsSelected(betID, oddID string) bool {
 	return false
 }
 
-func (t *Ticket) GetSignal() *signal2.Signal[*Ticket] {
+func (t *Ticket) GetSignal() *signal.Signal[*Ticket] {
 	return t.signal
 }

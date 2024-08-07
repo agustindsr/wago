@@ -8,6 +8,7 @@ import (
 	"wasm/client/components/draftea/osb"
 	"wasm/client/components/home"
 	"wasm/client/components/menu"
+	"wasm/client/components/performance"
 	"wasm/client/components/todolist"
 	"wasm/client/components/usermanagement"
 	"wasm/pkg/dom"
@@ -31,6 +32,7 @@ func main() {
 	r.AddRoute("/counter-signal", counter.NewCounterSignal().Render)
 	r.AddRoute("/user-management", usermanagement.Render)
 	r.AddRoute("/chat", chat.New().Render)
+	r.AddRoute("/performance", performance.NewPerformanceComponent().Render)
 
 	dom.ElementByID("app").SetInnerHTML("")
 	dom.ElementByID("app").Child(renderApp(r))
