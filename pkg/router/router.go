@@ -28,23 +28,7 @@ func (r *Router) AddRoute(path string, component func() dom.HTMLNode) {
 	}
 }
 
-func (r *Router) NavigateTo(path string) {
-	route, exists := r.routes[path]
-	if !exists {
-		// Handle 404 - Not Found
-		dom.ElementByID("content").SetInnerHTML("Page not found")
-		return
-	}
-
-	dom.ConsoleLog(fmt.Sprintf("Navigating to %s", path))
-	dom.PushHistoryState(nil, "", path)
-
-	dom.ElementByID("content").SetInnerHTML("")
-	dom.ElementByID("content").Child(route.Component())
-}
-
 func (r *Router) HandleNavigation() {
-	// Get current path from window location (simulate hash routing)
 	path := js.Global().Get("location").Get("hash").String()
 	if len(path) > 1 && path[0] == '#' {
 		path = path[1:]
@@ -68,4 +52,32 @@ func (r *Router) Initialize() {
 		r.HandleNavigation()
 		return nil
 	}))
+
+	// Handle the initial URL when the app is loaded
+	r.HandleInitialURL()
+}
+
+func (r *Router) HandleInitialURL() {
+	path := js.Global().Get("location").Get("pathname").String()
+	if path == "" {
+		path = "/"
+	}
+	r.NavigateTo(path)
+}
+
+func (r *Router) NavigateTo(path string) {
+	route, exists := r.routes[path]
+	if !exists {
+		// Handle 404 - Not Found
+		dom.ConsoleLog(fmt.Sprintf("Route not found: %s", path))
+		dom.ConsoleLog(fmt.Sprintf("routers: %v", r.routes))
+		dom.ElementByID("content").SetInnerHTML("Page not found")
+		return
+	}
+
+	dom.ConsoleLog(fmt.Sprintf("Navigating to %s", path))
+	dom.PushHistoryState(nil, "", path)
+
+	dom.ElementByID("content").SetInnerHTML("")
+	dom.ElementByID("content").Child(route.Component())
 }

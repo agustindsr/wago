@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAGO</title>
+    <script src="wasm_exec.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("play.wasm"), go.importObject).then((result) => {
+            go.run(result.instance);
+        });
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app"></div>
+</body>
+</html>
